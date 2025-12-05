@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEALTH-IA</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <div class="fundo_btn">
+        <figure>
+            <img src="HealthIA.png" alt="LOGOTIPO HEALTH-IA">
+        </figure>
+        <button class="btn_branco" data-aba="contato">Fale Conosco</button>
+        <button class="btn_branco" data-aba="login">Login</button>
+        <button class="btn_branco" data-aba="home">Home</button>
+        <button class="btn_branco" data-aba="trabalhe">Trabalhe Conosco</button>
+    </div>
+    
+    <!-- CONTATO -->
+    <div class="div_contato ocultar" id="contato">
+        <h1 class="h1_contato">Fale conosco</h1>
+
+        <div class="div_formulario">
+            <label>Nome:</label>
+            <input id="fc_nome" class="input_formulario" type="text" placeholder="Digite seu nome">
+
+            <label>Email:</label>
+            <input id="fc_email" class="input_formulario" type="email" placeholder="Digite seu email">
+
+            <label>Assunto:</label>
+            <input id="fc_assunto" class="input_formulario" type="text" placeholder="Assunto">
+
+            <label>Mensagem:</label>
+            <textarea id="fc_msg" class="input_formulario" placeholder="Sua mensagem"></textarea>
+
+            <button class="botao" id="btn_enviar_contato">Enviar</button>
+
+            <p class="d_p" id="fc_result">O resultado aparecerá aqui</p>
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="div_login ocultar" id="login">
+        <div id="login_fields">
+            <h1 class="h1_contato">Login</h1>
+
+            <label>Email</label>
+            <input id="lg_email" type="email" placeholder="Seu email">
+
+            <label>Senha</label>
+            <input id="lg_senha" type="password" placeholder="Sua senha">
+
+            <button id="btn_ir_cadastro" class="btn2">Criar nova conta</button>
+            <button id="btn_entrarLG" class="btn2">Entrar</button>
+        </div>
+
+        <!-- CADASTRO -->
+        <div class="div_cadastrar ocultar" id="cadastro">
+            <h1 class="h1_contato">Cadastro</h1>
+
+            <label>Nome completo</label>
+            <input id="cd_nome" type="text">
+
+            <label>Email</label>
+            <input id="cd_email" type="email">
+
+            <label>Senha</label>
+            <input id="cd_senha" type="password">
+
+            <button id="btn_salvar_cadastro" class="btn2">Salvar</button>
+
+            <p class="d_p" id="cd_result">Status do cadastro aparecerá aqui</p>
+        </div>
+    </div>
+
+    <!-- HOME -->
+    <div class="div_home ocultar" id="home">
+        <br>
+        <h1 class="h1_contato">Home</h1>
+        <h2 class="hmod">Revolucionando a Saúde com Inteligência Artificial</h2>
+        <h3 class="hmod">Soluções inovadoras para diagnósticos precisos e tratamentos personalizados</h3>
+        
+        <h4 class="hmod">Funcionalidades principais</h4>
+        <p class="d_p">
+            - Análise de sintomas<br>
+            - Monitoramento de hábitos<br>
+            - Chat personalizado com IA<br>
+            - Alertas e lembretes<br>
+            - Sugestões de bem-estar
+        </p>
+
+        <h4 class="hmod">Benefícios</h4>
+        <p class="d_p">
+            - Informações confiáveis<br>
+            - Aumenta o autocuidado<br>
+            - Melhora a organização da saúde<br>
+            - Interface fácil e rápida
+        </p>
+
+        <h4 class="hmod">Soluções</h4>
+        <p class="d_p">
+            • Diagnóstico assistido por IA<br>
+            • Personalização de tratamentos<br>
+            • Monitoramento Remoto<br>
+            • Análise preditiva
+        </p>
+    </div>
+
+    <!-- TRABALHE CONOSCO -->
+    <div class="div_trabalhe ocultar" id="trabalhe">
+        <h1 class="h1_contato">Vagas abertas</h1>
+
+        <div class="vaga">
+            <h3>Cientista de Dados em Saúde</h3>
+            <button class="btn"><a href="vaga.html" target="_blank">Candidate-se</a></button>
+        </div>
+
+        <div class="vaga">
+            <h3>Engenheiro de Software</h3>
+            <button class="btn"><a href="vaga.html" target="_blank">Candidate-se</a></button>
+        </div>
+
+        <div class="vagaULTIMA">
+            <h3>Não encontrou sua vaga?</h3>
+            <button class="btn"><a href="vaga.html" target="_blank">Enviar Currículo</a></button>
+        </div>
+    </div>
+
+</body>
+
+<script>
+/* ---- ALTERAÇÃO DE ABAS ---- */
+document.querySelectorAll("[data-aba]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const aba = btn.dataset.aba;
+
+        document.querySelectorAll(".div_contato, .div_login, .div_home, .div_trabalhe")
+                .forEach(div => div.classList.add("ocultar"));
+
+        document.getElementById(aba).classList.remove("ocultar");
+    });
+});
+
+/* ---- LOGIN → ABRIR CADASTRO ---- */
+document.getElementById("btn_ir_cadastro").addEventListener("click", () => {
+    document.getElementById("login_fields").classList.add("ocultar");
+    document.getElementById("cadastro").classList.remove("ocultar");
+});
+
+/* ---- CONTATO (BACK-END) ---- */
+document.getElementById("btn_enviar_contato").addEventListener("click", async () => {
+    const nome = fc_nome.value;
+    const email = fc_email.value;
+    const assunto = fc_assunto.value;
+    const mensagem = fc_msg.value;
+
+    const resposta = await fetch("http://localhost:3000/faleconosco", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, assunto, mensagem })
+    });
+
+    fc_result.innerText = (await resposta.json()).resposta;
+});
+
+/* ---- CADASTRO LOGIN ---- */
+document.getElementById("btn_salvar_cadastro").addEventListener("click", async () => {
+    const nome = cd_nome.value;
+    const email = cd_email.value;
+    const senha = cd_senha.value;
+
+    const resposta = await fetch("http://localhost:3000/cadastro_login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, senha })
+    });
+
+    cd_result.innerText = (await resposta.json()).resposta;
+});
+</script>
+</html>

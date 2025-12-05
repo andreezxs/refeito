@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas Abertas</title>
+    <link rel="stylesheet" href="vagaCSS.css" />
+</head>
+
+<body>
+
+<div class="fundo_btn">
+    <figure><img src="logoHEALTH.png"></figure>
+    <button class="btn_branco" data-aba="home">Home</button>
+    <button class="btn_branco" data-aba="trabalhe">Trabalhe Conosco</button>
+</div>
+
+<!-- FORMULÁRIO TRABALHE -->
+<div id="trabalhe" class="div_trabalhe ocultar">
+
+    <h1>Trabalhe Conosco</h1>
+
+    <label>Qual vaga?</label>
+    <input id="vaga_nome" type="text">
+
+    <label>Nome completo</label>
+    <input id="nome_trabalhe" type="text">
+
+    <label>Email</label>
+    <input id="email_trabalhe" type="email">
+
+    <button id="salvar_vaga" class="btn2">Enviar</button>
+
+    <p id="resultado_vaga">Status aparecerá aqui</p>
+</div>
+
+<!-- HOME -->
+<div id="home" class="div_home ocultar">
+    <h1>Home</h1>
+    <p>Voltar à página inicial</p>
+    <a href="index.html"><button class="btn">Voltar</button></a>
+</div>
+
+<script>
+document.querySelectorAll("[data-aba]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".div_home, .div_trabalhe")
+                .forEach(div => div.classList.add("ocultar"));
+        document.getElementById(btn.dataset.aba).classList.remove("ocultar");
+    });
+});
+
+document.getElementById("salvar_vaga").addEventListener("click", async ()=>{
+
+    const nome = document.getElementById("nome_trabalhe").value;
+    const email = document.getElementById("email_trabalhe").value;
+    const vaga = document.getElementById("vaga_nome").value;
+
+    const resposta = await fetch("http://localhost:3000/trabalheConosco", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ nome, email, vaga })
+    });
+
+    document.getElementById("resultado_vaga").innerText =
+        (await resposta.json()).resposta;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginCSS.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+<div class="fundo_btn">
+    <figure><img src="HealthIA.png"></figure>
+    <button class="btn_branco" data-aba="login">Login</button>
+    <button class="btn_branco" data-aba="home">Home</button>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="div_login ocultar">
+    <img src="HealthIA.png" class="logo">
+
+    <h1>Health-IA Login</h1>
+
+    <input id="email_login" type="email" class="input-field" placeholder="E-mail">
+    <input id="senha_login" type="password" class="input-field" placeholder="Senha">
+
+    <button id="entrar" class="button">Entrar</button>
+
+    <div id="feedback"></div>
+
+    <a href="cadastroFelipe.html" class="link">Não tem conta?</a>
+
+    <div class="footer">© 2025 Health-IA</div>
+</div>
+
+<!-- HOME -->
+<div id="home" class="div_home ocultar">
+    <h1>Home Health-IA</h1>
+    <p>Volte para a página inicial</p>
+    <a href="index.html"><button class="button">Página Inicial</button></a>
+</div>
+
+<script>
+document.querySelectorAll("[data-aba]").forEach(b => {
+    b.addEventListener("click", () => {
+        document.querySelectorAll(".div_login, .div_home")
+                .forEach(div => div.classList.add("ocultar"));
+        document.getElementById(b.dataset.aba).classList.remove("ocultar");
+    });
+});
+</script>
+
+</body>
+</html>
