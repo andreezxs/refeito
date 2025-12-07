@@ -1,71 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vagas Abertas</title>
-    <link rel="stylesheet" href="vagaCSS.css" />
+    <title>Vaga - HEALTH-IA</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="fundo_btn">
-    <figure><img src="logoHEALTH.png"></figure>
-    <button class="btn_branco" data-aba="home">Home</button>
-    <button class="btn_branco" data-aba="trabalhe">Trabalhe Conosco</button>
-</div>
+    <div class="div_contato">
+        <h1 class="h1_contato">Candidate-se para a Vaga</h1>
 
-<!-- FORMULÁRIO TRABALHE -->
-<div id="trabalhe" class="div_trabalhe ocultar">
+        <div class="div_formulario">
 
-    <h1>Trabalhe Conosco</h1>
+            <label for="input_nome">Nome:</label>
+            <input id="input_nome" class="input_formulario" type="text">
 
-    <label>Qual vaga?</label>
-    <input id="vaga_nome" type="text">
+            <br><br>
 
-    <label>Nome completo</label>
-    <input id="nome_trabalhe" type="text">
+            <label for="input_email">Email:</label>
+            <input id="input_email" class="input_formulario" type="email">
 
-    <label>Email</label>
-    <input id="email_trabalhe" type="email">
+            <br><br>
 
-    <button id="salvar_vaga" class="btn2">Enviar</button>
+            <label for="input_vaga">Vaga desejada:</label>
+            <input id="input_vaga" class="input_formulario" type="text">
 
-    <p id="resultado_vaga">Status aparecerá aqui</p>
-</div>
+            <br><br>
 
-<!-- HOME -->
-<div id="home" class="div_home ocultar">
-    <h1>Home</h1>
-    <p>Voltar à página inicial</p>
-    <a href="index.html"><button class="btn">Voltar</button></a>
-</div>
+            <label for="input_msg">Mensagem:</label>
+            <textarea id="input_msg" class="input_formulario"></textarea>
 
-<script>
-document.querySelectorAll("[data-aba]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelectorAll(".div_home, .div_trabalhe")
-                .forEach(div => div.classList.add("ocultar"));
-        document.getElementById(btn.dataset.aba).classList.remove("ocultar");
-    });
-});
+            <br><br>
 
-document.getElementById("salvar_vaga").addEventListener("click", async ()=>{
+            <button class="botao" id="btn_enviar_vaga">Enviar candidatura</button>
 
-    const nome = document.getElementById("nome_trabalhe").value;
-    const email = document.getElementById("email_trabalhe").value;
-    const vaga = document.getElementById("vaga_nome").value;
-
-    const resposta = await fetch("http://localhost:3000/trabalheConosco", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ nome, email, vaga })
-    });
-
-    document.getElementById("resultado_vaga").innerText =
-        (await resposta.json()).resposta;
-});
-</script>
+            <p class="d_p" id="resultado_vaga">O resultado aparecerá aqui</p>
+        </div>
+    </div>
 
 </body>
+
+<script>
+    btn_enviar_vaga.onclick = async () => {
+        const nome = input_nome.value;
+        const email = input_email.value;
+        const vaga = input_vaga.value;
+        const mensagem = input_msg.value;
+
+        const resposta = await fetch("http://localhost:3000/candidatura_vaga", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, vaga, mensagem })
+        });
+
+        const dados = await resposta.json();
+        resultado_vaga.innerText = dados.resposta || "Candidatura enviada!";
+    };
+</script>
+
 </html>
