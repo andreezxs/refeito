@@ -14,77 +14,96 @@
         <figure>
             <img src="HealthIA.png" alt="LOGOTIPO HEALTH-IA">
         </figure>
-        <button class="btn_branco" data-aba="contato">Fale Conosco</button>
-        <button class="btn_branco" data-aba="login">Login</button>
-        <button class="btn_branco" data-aba="home">Home</button>
-        <button class="btn_branco" data-aba="trabalhe">Trabalhe Conosco</button>
+        <button class="btn_branco" id="btn_contato">Fale Conosco</button>
+        <button class="btn_branco" id="btn_login">Login</button>
+        <button class="btn_branco" id="btn_home">Home</button>
+        <button class="btn_branco" id="btn_trabalhe">Trabalhe Conosco</button>
     </div>
-    
-    <!-- CONTATO -->
-    <div class="div_contato ocultar" id="contato">
+
+    <!-- FALE CONOSCO -->
+    <div class="div_contato ocultar" id="div_contato">
         <h1 class="h1_contato">Fale conosco</h1>
 
-        <div class="div_formulario">
-            <label>Nome:</label>
-            <input id="fc_nome" class="input_formulario" type="text" placeholder="Digite seu nome">
+        <div id="div_formulario" class="div_formulario">
 
-            <label>Email:</label>
-            <input id="fc_email" class="input_formulario" type="email" placeholder="Digite seu email">
+            <label for="input_nomeFC">Nome:</label>
+            <input id="input_nomeFC" class="input_formulario" type="text">
 
-            <label>Assunto:</label>
-            <input id="fc_assunto" class="input_formulario" type="text" placeholder="Assunto">
+            <br><br>
 
-            <label>Mensagem:</label>
-            <textarea id="fc_msg" class="input_formulario" placeholder="Sua mensagem"></textarea>
+            <label for="input_emailFC">Email:</label>
+            <input id="input_emailFC" class="input_formulario" type="email">
+
+            <br><br>
+
+            <label for="input_assuntoFC">Assunto:</label>
+            <input id="input_assuntoFC" class="input_formulario" type="text">
+
+            <br><br>
+
+            <label for="input_msgFC">Mensagem:</label>
+            <input id="input_msgFC" class="input_formulario" type="text">
+
+            <br><br>
 
             <button class="botao" id="btn_enviar_contato">Enviar</button>
 
-            <p class="d_p" id="fc_result">O resultado aparecerá aqui</p>
+            <p class="d_p" id="resultado">O resultado vai aparecer aqui</p>
         </div>
     </div>
 
     <!-- LOGIN -->
-    <div class="div_login ocultar" id="login">
+    <div class="div_login ocultar" id="div_login">
+
         <div id="login_fields">
             <h1 class="h1_contato">Login</h1>
 
-            <label>Email</label>
-            <input id="lg_email" type="email" placeholder="Seu email">
+            <label for="input_emailLG">Email</label>
+            <input id="input_emailLG" type="email">
 
-            <label>Senha</label>
-            <input id="lg_senha" type="password" placeholder="Sua senha">
+            <br><br>
 
-            <button id="btn_ir_cadastro" class="btn2">Criar nova conta</button>
+            <label for="input_senhaLG">Senha</label>
+            <input id="input_senhaLG" type="password">
+
+            <br><br>
+
+            <button id="btn_cadastrarLG" class="btn2">Criar nova conta</button>
             <button id="btn_entrarLG" class="btn2">Entrar</button>
         </div>
 
         <!-- CADASTRO -->
-        <div class="div_cadastrar ocultar" id="cadastro">
+        <div class="div_cadastrar ocultar" id="div_cadastrar">
             <h1 class="h1_contato">Cadastro</h1>
 
-            <label>Nome completo</label>
-            <input id="cd_nome" type="text">
+            <label for="input_nome_lg">Nome completo</label>
+            <input id="input_nome_lg" type="text">
 
-            <label>Email</label>
-            <input id="cd_email" type="email">
+            <br><br>
 
-            <label>Senha</label>
-            <input id="cd_senha" type="password">
+            <label for="input_senha_cadastro">Senha</label>
+            <input id="input_senha_cadastro" type="password">
+
+            <br><br>
+
+            <label for="input_email_lg">Email</label>
+            <input id="input_email_lg" type="email">
+
+            <br><br>
 
             <button id="btn_salvar_cadastro" class="btn2">Salvar</button>
 
-            <p class="d_p" id="cd_result">Status do cadastro aparecerá aqui</p>
+            <p class="d_p" id="resultado_cadastro">Status aparecerá aqui</p>
         </div>
     </div>
 
     <!-- HOME -->
-    <div class="div_home ocultar" id="home">
-        <br>
+    <div class="div_home ocultar" id="div_home">
         <h1 class="h1_contato">Home</h1>
         <h2 class="hmod">Revolucionando a Saúde com Inteligência Artificial</h2>
-        <h3 class="hmod">Soluções inovadoras para diagnósticos precisos e tratamentos personalizados</h3>
-        
-        <h4 class="hmod">Funcionalidades principais</h4>
+        <h3 class="hmod">Diagnósticos precisos e tratamentos personalizados</h3>
+
+        <h4 class="hmod">Funcionalidades</h4>
         <p class="d_p">
             - Análise de sintomas<br>
             - Monitoramento de hábitos<br>
@@ -95,91 +114,85 @@
 
         <h4 class="hmod">Benefícios</h4>
         <p class="d_p">
-            - Informações confiáveis<br>
-            - Aumenta o autocuidado<br>
-            - Melhora a organização da saúde<br>
-            - Interface fácil e rápida
-        </p>
-
-        <h4 class="hmod">Soluções</h4>
-        <p class="d_p">
-            • Diagnóstico assistido por IA<br>
-            • Personalização de tratamentos<br>
-            • Monitoramento Remoto<br>
-            • Análise preditiva
+            - Reduz tempo de busca<br>
+            - Aumenta autocuidado<br>
+            - Organização da saúde
         </p>
     </div>
 
     <!-- TRABALHE CONOSCO -->
-    <div class="div_trabalhe ocultar" id="trabalhe">
+    <div class="div_trabalhe ocultar" id="div_trabalhe">
+
         <h1 class="h1_contato">Vagas abertas</h1>
 
         <div class="vaga">
-            <h3>Cientista de Dados em Saúde</h3>
-            <button class="btn"><a href="vaga.html" target="_blank">Candidate-se</a></button>
+            <h3>Cientista de Dados</h3>
+            <button class="btn">
+                <a href="vaga.html" target="_blank">Candidate-se</a>
+            </button>
         </div>
 
         <div class="vaga">
             <h3>Engenheiro de Software</h3>
-            <button class="btn"><a href="vaga.html" target="_blank">Candidate-se</a></button>
-        </div>
-
-        <div class="vagaULTIMA">
-            <h3>Não encontrou sua vaga?</h3>
-            <button class="btn"><a href="vaga.html" target="_blank">Enviar Currículo</a></button>
+            <button class="btn">
+                <a href="vaga.html" target="_blank">Candidate-se</a>
+            </button>
         </div>
     </div>
 
 </body>
 
 <script>
-/* ---- ALTERAÇÃO DE ABAS ---- */
-document.querySelectorAll("[data-aba]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const aba = btn.dataset.aba;
-
+    function abrirTela(tela) {
         document.querySelectorAll(".div_contato, .div_login, .div_home, .div_trabalhe")
-                .forEach(div => div.classList.add("ocultar"));
+            .forEach(div => div.classList.add("ocultar"));
 
-        document.getElementById(aba).classList.remove("ocultar");
-    });
-});
+        document.getElementById(tela).classList.remove("ocultar");
+    }
 
-/* ---- LOGIN → ABRIR CADASTRO ---- */
-document.getElementById("btn_ir_cadastro").addEventListener("click", () => {
-    document.getElementById("login_fields").classList.add("ocultar");
-    document.getElementById("cadastro").classList.remove("ocultar");
-});
+    btn_contato.onclick = () => abrirTela("div_contato");
+    btn_login.onclick = () => abrirTela("div_login");
+    btn_home.onclick = () => abrirTela("div_home");
+    btn_trabalhe.onclick = () => abrirTela("div_trabalhe");
 
-/* ---- CONTATO (BACK-END) ---- */
-document.getElementById("btn_enviar_contato").addEventListener("click", async () => {
-    const nome = fc_nome.value;
-    const email = fc_email.value;
-    const assunto = fc_assunto.value;
-    const mensagem = fc_msg.value;
+    // LOGIN → ABRIR CADASTRO
+    btn_cadastrarLG.onclick = () => {
+        login_fields.style.display = "none";
+        div_cadastrar.classList.remove("ocultar");
+    };
 
-    const resposta = await fetch("http://localhost:3000/faleconosco", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, assunto, mensagem })
-    });
+    // SALVAR CONTATO
+    btn_enviar_contato.onclick = async () => {
+        const nome = input_nomeFC.value;
+        const email = input_emailFC.value;
+        const assunto = input_assuntoFC.value;
+        const mensagem = input_msgFC.value;
 
-    fc_result.innerText = (await resposta.json()).resposta;
-});
+        const resposta = await fetch("http://localhost:3000/faleconosco", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, assunto, mensagem })
+        });
 
-/* ---- CADASTRO LOGIN ---- */
-document.getElementById("btn_salvar_cadastro").addEventListener("click", async () => {
-    const nome = cd_nome.value;
-    const email = cd_email.value;
-    const senha = cd_senha.value;
+        const dados = await resposta.json();
+        resultado.innerText = dados.resposta || "Enviado!";
+    };
 
-    const resposta = await fetch("http://localhost:3000/cadastro_login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha })
-    });
+    // SALVAR CADASTRO LOGIN
+    btn_salvar_cadastro.onclick = async () => {
+        const nome_compl = input_nome_lg.value;
+        const email = input_email_lg.value;
+        const senha = input_senha_cadastro.value;
 
-    cd_result.innerText = (await resposta.json()).resposta;
-});
+        const resposta = await fetch("http://localhost:3000/cadastro_login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome_compl, email, senha })
+        });
+
+        const dados = await resposta.json();
+        resultado_cadastro.innerText = dados.resposta || "Salvo!";
+    };
 </script>
+
 </html>
