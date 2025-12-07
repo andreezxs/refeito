@@ -3,52 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="loginCSS.css">
-    <title>Login</title>
+    <title>Login - HEALTH-IA</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div class="fundo_btn">
-    <figure><img src="HealthIA.png"></figure>
-    <button class="btn_branco" data-aba="login">Login</button>
-    <button class="btn_branco" data-aba="home">Home</button>
-</div>
+    <div class="div_login" id="div_login">
 
-<!-- LOGIN -->
-<div id="login" class="div_login ocultar">
-    <img src="HealthIA.png" class="logo">
+        <div id="login_fields">
+            <h1 class="h1_contato">Login</h1>
 
-    <h1>Health-IA Login</h1>
+            <label for="input_emailLG">Email</label>
+            <input id="input_emailLG" type="email">
 
-    <input id="email_login" type="email" class="input-field" placeholder="E-mail">
-    <input id="senha_login" type="password" class="input-field" placeholder="Senha">
+            <br><br>
 
-    <button id="entrar" class="button">Entrar</button>
+            <label for="input_senhaLG">Senha</label>
+            <input id="input_senhaLG" type="password">
 
-    <div id="feedback"></div>
+            <br><br>
 
-    <a href="cadastroFelipe.html" class="link">Não tem conta?</a>
+            <button id="btn_cadastrarLG" class="btn2">Criar nova conta</button>
+            <button id="btn_entrarLG" class="btn2">Entrar</button>
+        </div>
 
-    <div class="footer">© 2025 Health-IA</div>
-</div>
+        <!-- CADASTRO -->
+        <div class="div_cadastrar ocultar" id="div_cadastrar">
+            <h1 class="h1_contato">Cadastro</h1>
 
-<!-- HOME -->
-<div id="home" class="div_home ocultar">
-    <h1>Home Health-IA</h1>
-    <p>Volte para a página inicial</p>
-    <a href="index.html"><button class="button">Página Inicial</button></a>
-</div>
+            <label for="input_nome_lg">Nome completo</label>
+            <input id="input_nome_lg" type="text">
 
-<script>
-document.querySelectorAll("[data-aba]").forEach(b => {
-    b.addEventListener("click", () => {
-        document.querySelectorAll(".div_login, .div_home")
-                .forEach(div => div.classList.add("ocultar"));
-        document.getElementById(b.dataset.aba).classList.remove("ocultar");
-    });
-});
-</script>
+            <br><br>
+
+            <label for="input_senha_cadastro">Senha</label>
+            <input id="input_senha_cadastro" type="password">
+
+            <br><br>
+
+            <label for="input_email_lg">Email</label>
+            <input id="input_email_lg" type="email">
+
+            <br><br>
+
+            <button id="btn_salvar_cadastro" class="btn2">Salvar</button>
+
+            <p class="d_p" id="resultado_cadastro">Status aparecerá aqui</p>
+        </div>
+    </div>
 
 </body>
+
+<script>
+    // ABRIR TELA DE CADASTRO
+    btn_cadastrarLG.onclick = () => {
+        login_fields.style.display = "none";
+        div_cadastrar.classList.remove("ocultar");
+    };
+
+    // ENTRAR
+    btn_entrarLG.onclick = () => {
+        const email = input_emailLG.value.trim();
+        const senha = input_senhaLG.value.trim();
+
+        if (!email || !senha) {
+            alert("Preencha email e senha.");
+            return;
+        }
+
+        alert("Login realizado! (Simulação)");
+    };
+
+    // SALVAR CADASTRO
+    btn_salvar_cadastro.onclick = async () => {
+        const nome = input_nome_lg.value;
+        const email = input_email_lg.value;
+        const senha = input_senha_cadastro.value;
+
+        const resposta = await fetch("http://localhost:3000/cadastro_login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome_compl: nome, email, senha })
+        });
+
+        const dados = await resposta.json();
+        resultado_cadastro.innerText = dados.resposta || "Salvo!";
+    };
+</script>
+
 </html>
